@@ -32,8 +32,12 @@ getControls();
 	if ySpd > termVel { ySpd = termVel; }
 	
 	// Jump
-	if jumpKeyPressed && place_meeting(x,y+1,oWall)
+	if jumpKeyBuffered && place_meeting(x,y+1,oWall)
 	{
+		// Reset buffer
+		jumpKeyBuffered = false;
+		jumpKeyBufferTimer = 0;
+		// Set ySpd to jump speed
 		ySpd = jSpd;
 	}
 
