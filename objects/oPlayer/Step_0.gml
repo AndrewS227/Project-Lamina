@@ -1,8 +1,3 @@
-// Get Inputs
-rightKey = keyboard_check(vk_right);
-leftKey = keyboard_check(vk_left);
-jumpKeyPressed = keyboard_check_pressed(vk_space)
-
 // X Movement
 	moveDir = rightKey - leftKey; // determines player's move direction
 	xSpd = moveDir * moveSpd; // determines player's x movement speed
