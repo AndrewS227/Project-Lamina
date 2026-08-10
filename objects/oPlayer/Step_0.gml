@@ -31,7 +31,7 @@ getControls();
 	// Cap falling spd
 	if ySpd > termVel { ySpd = termVel; }
 	
-	// Jump
+	// Jump and collision w. wall/ground
 	if jumpKeyBuffered && place_meeting(x,y+1,oWall)
 	{
 		// Reset buffer

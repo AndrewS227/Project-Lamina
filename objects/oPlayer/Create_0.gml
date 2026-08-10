@@ -10,3 +10,4 @@ ySpd = 0; // vertical spd
 grav = .275 // gravity
 termVel = 4 // terminal velocity, fall spd cap
 jSpd = -5.15 // jump spd
+
