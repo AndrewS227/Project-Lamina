@@ -1,3 +1,6 @@
+// Get Inputs
+getControls();
+
 // X Movement
 	moveDir = rightKey - leftKey; // determines player's move direction
 	xSpd = moveDir * moveSpd; // determines player's x movement speed
