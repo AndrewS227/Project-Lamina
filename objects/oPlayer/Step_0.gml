@@ -28,11 +28,8 @@ getControls();
 	// Gravity
 	ySpd += grav;
 	
-	// Cap falling spd
-	if ySpd > termVel { ySpd = termVel; }
-	
-	// Jump and collision w. wall/ground
-	if jumpKeyBuffered && place_meeting(x,y+1,oWall)
+	// Jump and collision w. ground
+	if jumpKeyBuffered && onGround
 	{
 		// Reset buffer
 		jumpKeyBuffered = false;
@@ -41,6 +38,11 @@ getControls();
 		ySpd = jSpd;
 	}
 
+// Y Collision and movement
+	// Cap falling spd
+	if ySpd > termVel { ySpd = termVel; }
+	
+	// Collision
 	if place_meeting(x, y + ySpd, oWall)
 	{
 		// Scoot up to wall precisely
@@ -50,8 +52,18 @@ getControls();
 			y += _pixelCheck;
 		}
 	
-		// xSpd set to zero on collision
+		// xSpd set to zero to collide
 		ySpd = 0;
+	}
+	
+	// Set if player is on the ground
+	if ySpd >= 0 && place_meeting(x,y+1,oWall)
+	{
+		onGround = true;
+	}
+	else
+	{
+		onGround = false;
 	}
 	
 	// Move
