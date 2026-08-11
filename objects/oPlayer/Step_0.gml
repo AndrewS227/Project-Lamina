@@ -39,7 +39,7 @@ getControls();
 		if jumpCount == 0 { jumpCount = 1; }
 	}
 	
-	// Jump and collision w. ground
+	// Initiate the Jump
 	if jumpKeyBuffered && jumpCount < jumpMax
 	{
 		// Reset buffer
@@ -49,8 +49,23 @@ getControls();
 		// Increrase num. of jumps
 		jumpCount++;
 		
-		// Set ySpd to jump speed
-		ySpd = jSpd;
+		// Set the jump hold timer
+		jumpHoldTimer = jumpHoldFrames[jumpCount-1];
+	}
+	
+	// Jump based on the timer/holding the btn.
+	if jumpHoldTimer > 0
+	{
+		// Constantly set the ySpd to be the jumping speed
+		ySpd = jSpd[jumpCount-1];
+		// Count down the timer
+		jumpHoldTimer--;
+	}
+	
+	//Cut off the jump by releasing the jump button
+	if !jumpKey
+	{
+		jumpHoldTimer = 0;
 	}
 
 // Y Collision and movement
