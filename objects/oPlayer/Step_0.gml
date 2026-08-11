@@ -32,6 +32,7 @@ getControls();
 	if onGround
 	{
 		jumpCount = 0;
+		jumpHoldTimer = 0;
 	}
 	else
 	{
@@ -77,11 +78,14 @@ getControls();
 	{
 		// Scoot up to wall precisely
 		var _pixelCheck = _subPixel * sign(ySpd);
-		while !place_meeting(x, y + _pixelCheck, oWall)
+		while !place_meeting(x, y + _pixelCheck, oWall){ y += _pixelCheck; }
+		
+		// Bonk code (if player bonks head into ceiling, player moves downwards)
+		if ySpd < 0
 		{
-			y += _pixelCheck;
+			jumpHoldTimer = 0;
 		}
-	
+		
 		// xSpd set to zero to collide
 		ySpd = 0;
 	}
