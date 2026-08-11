@@ -28,12 +28,27 @@ getControls();
 	// Gravity
 	ySpd += grav;
 	
+	// Reset/Prepare jumping variables
+	if onGround
+	{
+		jumpCount = 0;
+	}
+	else
+	{
+		// player can't jump twice in air
+		if jumpCount == 0 { jumpCount = 1; }
+	}
+	
 	// Jump and collision w. ground
-	if jumpKeyBuffered && onGround
+	if jumpKeyBuffered && jumpCount < jumpMax
 	{
 		// Reset buffer
 		jumpKeyBuffered = false;
 		jumpKeyBufferTimer = 0;
+		
+		// Increrase num. of jumps
+		jumpCount++;
+		
 		// Set ySpd to jump speed
 		ySpd = jSpd;
 	}
