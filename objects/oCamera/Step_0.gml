@@ -2,6 +2,12 @@
 // This code is for smoother player tracking
 // Persistent should be ticked off -> persistent game wide behaviour
 
+// Fullscreen toggle
+if keyboard_check_pressed(vk_f1)
+{
+	window_set_fullscreen(!window_get_fullscreen());
+}
+
 // Exit if there's no player
 if !instance_exists(oPlayer) exit;
 
