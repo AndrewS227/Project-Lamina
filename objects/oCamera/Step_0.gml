@@ -8,20 +8,16 @@ if keyboard_check_pressed(vk_f1)
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-// Exit if there's no player
-if !instance_exists(oPlayer) exit;
+// Exits if there's no player
+// Gets cam. size
+// Gets coordinates at the start of the room
+// Constrains cam. to room borders
+cam_func();
 
-// Get camera size
-var _camWidth = camera_get_view_width(view_camera[0]);
-var _camHeight = camera_get_view_height(view_camera[0]);
-
-// Get camera target coordinates
-var _camX = oPlayer.x - _camWidth/2;
-var _camY = oPlayer.y - _camHeight/2;
-
-// Constrain cam. to room borders
-_camX = clamp(_camX, 0, room_width - _camWidth);
-_camY = clamp(_camY, 0, room_height - _camHeight);
+// Set cam coordinate variables
+// For smoother tracking
+finalCamX += (camX - finalCamX) * camTrailSpd;
+finalCamY += (camY - finalCamY) * camTrailSpd;
 
 // Set camera coordinates
-camera_set_view_pos(view_camera[0], _camX, _camY);
+camera_set_view_pos(view_camera[0], finalCamX, finalCamY);

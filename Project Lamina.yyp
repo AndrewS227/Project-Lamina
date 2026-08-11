@@ -29,6 +29,7 @@
     {"id":{"name":"oWall","path":"objects/oWall/oWall.yy",},},
     {"id":{"name":"rInit","path":"rooms/rInit/rInit.yy",},},
     {"id":{"name":"rOne","path":"rooms/rOne/rOne.yy",},},
+    {"id":{"name":"cam_functions","path":"scripts/cam_functions/cam_functions.yy",},},
     {"id":{"name":"general_functions","path":"scripts/general_functions/general_functions.yy",},},
     {"id":{"name":"sPlayer","path":"sprites/sPlayer/sPlayer.yy",},},
     {"id":{"name":"sWall","path":"sprites/sWall/sWall.yy",},},
