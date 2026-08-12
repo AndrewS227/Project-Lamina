@@ -26,7 +26,18 @@ getControls();
 
 // Y Movement
 	// Gravity
-	ySpd += grav;
+	if coyoteHangTimer > 0
+	{
+		coyoteHangTimer--;
+	}
+	else
+	{
+		// Apply grav. to player
+		ySpd += grav;
+		// Player is no longer on the ground
+		setOnGround(false);
+	}
+	
 	
 	// Reset/Prepare jumping variables
 	if onGround
@@ -52,6 +63,9 @@ getControls();
 		
 		// Set the jump hold timer
 		jumpHoldTimer = jumpHoldFrames[jumpCount-1];
+		
+		// Player is no longer on the ground
+		setOnGround(false);
 	}
 	
 	// Jump based on the timer/holding the btn.
@@ -93,11 +107,7 @@ getControls();
 	// Set if player is on the ground
 	if ySpd >= 0 && place_meeting(x,y+1,oWall)
 	{
-		onGround = true;
-	}
-	else
-	{
-		onGround = false;
+		 setOnGround(true);
 	}
 	
 	// Move

@@ -20,3 +20,11 @@ jumpHoldFrames[0] = 18; // num. of frames holding jump is allowed
 jSpd[0] = -3.15; // jump spd
 jumpHoldFrames[1] = 10;
 jSpd[1] = -2.85; 
+
+// Coyote time
+// Hang time
+coyoteHangFrames = 2;
+coyoteHangTimer = 0;
+// Jump buffer time
+coyoteJumpFrames = 5; // how long 'til jump reset in air
+coyoteJumpTimer = 0;
