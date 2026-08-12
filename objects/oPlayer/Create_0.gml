@@ -26,5 +26,5 @@ jSpd[1] = -2.85;
 coyoteHangFrames = 2;
 coyoteHangTimer = 0;
 // Jump buffer time
-coyoteJumpFrames = 5; // how long 'til jump reset in air
+coyoteJumpFrames = 10; // how long 'til jump reset in air
 coyoteJumpTimer = 0;

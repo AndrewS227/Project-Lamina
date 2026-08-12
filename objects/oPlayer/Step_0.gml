@@ -44,11 +44,13 @@ getControls();
 	{
 		jumpCount = 0;
 		jumpHoldTimer = 0;
+		coyoteJumpTimer = coyoteJumpFrames;
 	}
 	else
 	{
 		// player can't jump twice in air
-		if jumpCount == 0 { jumpCount = 1; }
+		coyoteJumpTimer--;
+		if jumpCount == 0 && coyoteJumpTimer <= 0 { jumpCount = 1; }
 	}
 	
 	// Initiate the Jump
