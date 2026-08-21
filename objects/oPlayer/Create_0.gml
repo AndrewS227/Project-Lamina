@@ -1,8 +1,16 @@
 // Control Setup
 controlsSetup();
 
+// Sprites
+idleSpr = sPlayerIdle;
+moveSpr = sPlayerMove;
+runSpr = sPlayerSprint;
+jumpSpr = sPlayerFirstJump;
+sJumpSpr = sPlayerSecondJump;
+
 // Moving
-moveDir = 0; // direction
+face = 1; // player facing to the right or to the left (1 or -1)
+moveDir = 0; // direction (-1, 0, 1)
 moveSpd = 2; // movement spd
 xSpd = 0;// horizontal spd
 ySpd = 0; // vertical spd

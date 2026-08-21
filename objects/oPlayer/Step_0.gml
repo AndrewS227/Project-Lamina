@@ -3,6 +3,10 @@ getControls();
 
 // X Movement
 	moveDir = rightKey - leftKey; // determines player's move direction
+	
+	// what direction the player is facing
+	if moveDir != 0 { face = moveDir };
+	
 	xSpd = moveDir * moveSpd; // determines player's x movement speed
 
 	// X Collision
