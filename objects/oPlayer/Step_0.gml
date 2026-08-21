@@ -7,7 +7,9 @@ getControls();
 	// what direction the player is facing
 	if moveDir != 0 { face = moveDir };
 	
-	xSpd = moveDir * moveSpd; // determines player's x movement speed
+	runType = sprintKey; // movement type
+	
+	xSpd = moveDir * moveSpd[runType]; // determines player's x movement speed
 
 	// X Collision
 	var _subPixel = .5; // for matching up up the resolution of the art and the logic of the game
@@ -120,8 +122,10 @@ getControls();
 	y += ySpd;
 	
 // Sprite Control
-	// Move
+	// Move, walking
 	if abs(xSpd) > 0 { sprite_index = moveSpr };
+	// Sprint
+	if abs(xSpd) >= moveSpd[1] { sprite_index = sprintSpr };
 	// Not moving
 	if xSpd == 0 { sprite_index = idleSpr };
 	// In the air

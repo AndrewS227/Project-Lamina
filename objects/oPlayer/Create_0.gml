@@ -5,14 +5,16 @@ controlsSetup();
 maskSpr = sPlayerIdle;
 idleSpr = sPlayerIdle;
 moveSpr = sPlayerMove;
-runSpr = sPlayerSprint;
+sprintSpr = sPlayerSprint;
 jumpSpr = sPlayerFirstJump;
 sJumpSpr = sPlayerSecondJump;
 
 // Moving
 face = 1; // player facing to the right or to the left (1 or -1)
 moveDir = 0; // direction (-1, 0, 1)
-moveSpd = 2; // movement spd
+runType = 0; // base move spd or sprint spd, 0 or 1
+moveSpd[0] = 2; // base movement spd
+moveSpd[1] = 3.5; // sprint spd
 xSpd = 0;// horizontal spd
 ySpd = 0; // vertical spd
 

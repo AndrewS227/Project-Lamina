@@ -29,6 +29,10 @@ function getControls()
 	// Holding jump input
 	jumpKey = keyboard_check(vk_space) +  gamepad_button_check(gamepad,gp_face1);
 		jumpKey = clamp(jumpKey, 0, 1);
+		
+	// Sprinting
+	sprintKey = keyboard_check(ord("V")) +  gamepad_button_check(gamepad,gp_face3);
+		sprintKey = clamp(sprintKey, 0, 1);
 	
 	// Jump key buffering
 	if jumpKeyPressed
