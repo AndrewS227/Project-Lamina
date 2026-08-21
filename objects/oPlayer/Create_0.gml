@@ -2,6 +2,7 @@
 controlsSetup();
 
 // Sprites
+maskSpr = sPlayerIdle;
 idleSpr = sPlayerIdle;
 moveSpr = sPlayerMove;
 runSpr = sPlayerSprint;

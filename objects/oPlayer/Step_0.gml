@@ -118,3 +118,15 @@ getControls();
 	
 	// Move
 	y += ySpd;
+	
+// Sprite Control
+	// Move
+	if abs(xSpd) > 0 { sprite_index = moveSpr };
+	// Not moving
+	if xSpd == 0 { sprite_index = idleSpr };
+	// In the air
+	if !onGround && jumpCount == 1 { sprite_index = jumpSpr }
+	if !onGround && jumpCount == 2 { sprite_index = sJumpSpr }; // second jump
+	
+	// Set collision mask
+	mask_index = maskSpr;
