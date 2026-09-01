@@ -21,18 +21,25 @@ getControls();
 		{
 			while place_meeting(x + xSpd, y, oWall) { y -= _subPixel };
 		}
-		// If there's no slope -> regular collision
+		// Next check for ceiling slopes. If there's no slope -> regular collision
 		else
 		{
-			// Scoot up to wall precisely
-			var _pixelCheck = _subPixel * sign(xSpd);
-			while !place_meeting(x + _pixelCheck, y, oWall){ x += _pixelCheck };
+			// Ceiling slopes
+			if !place_meeting(x + xSpd, y + abs(xSpd) + 1, oWall)
+			{
+				while place_meeting(x + xSpd, y, oWall) { y += _subPixel };
+			}
+			// Normal x collision
+			else
+			{
+				// Scoot up to wall precisely
+				var _pixelCheck = _subPixel * sign(xSpd);
+				while !place_meeting(x + _pixelCheck, y, oWall){ x += _pixelCheck };
 	
-			// xSpd set to zero on collision
-			xSpd = 0;
+				// xSpd set to zero on collision
+				xSpd = 0;
+			}
 		}
-		
-		
 	}
 
 	// Go Down Slopes
@@ -116,10 +123,7 @@ getControls();
 		while !place_meeting(x, y + _pixelCheck, oWall){ y += _pixelCheck; }
 		
 		// Bonk code (if player bonks head into ceiling, player moves downwards)
-		if ySpd < 0
-		{
-			jumpHoldTimer = 0;
-		}
+		//if ySpd < 0 { jumpHoldTimer = 0 };
 		
 		// xSpd set to zero to collide
 		ySpd = 0;
