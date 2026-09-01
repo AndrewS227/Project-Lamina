@@ -16,15 +16,26 @@ getControls();
 
 	if place_meeting(x + xSpd, y, oWall)
 	{
-		// Scoot up to wall precisely
-		var _pixelCheck = _subPixel * sign(xSpd); // 
-		while !place_meeting(x + _pixelCheck, y, oWall)
+		// First check if there's a slope to go up
+		if !place_meeting(x + xSpd, y - abs(xSpd) - 1, oWall)
 		{
-			x += _pixelCheck;
+			while place_meeting(x + xSpd, y, oWall) { y -= _subPixel };
 		}
+		// If there's no slope -> regular collision
+		else
+		{
+			// Scoot up to wall precisely
+			var _pixelCheck = _subPixel * sign(xSpd);
+			while !place_meeting(x + _pixelCheck, y, oWall)
+			{
+				x += _pixelCheck;
+			}
 	
-		// xSpd set to zero on collision
-		xSpd = 0;
+			// xSpd set to zero on collision
+			xSpd = 0;
+		}
+		
+		
 	}
 
 	// Move
