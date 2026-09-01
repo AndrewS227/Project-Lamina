@@ -26,10 +26,7 @@ getControls();
 		{
 			// Scoot up to wall precisely
 			var _pixelCheck = _subPixel * sign(xSpd);
-			while !place_meeting(x + _pixelCheck, y, oWall)
-			{
-				x += _pixelCheck;
-			}
+			while !place_meeting(x + _pixelCheck, y, oWall){ x += _pixelCheck };
 	
 			// xSpd set to zero on collision
 			xSpd = 0;
@@ -38,6 +35,11 @@ getControls();
 		
 	}
 
+	// Go Down Slopes
+	if ySpd >= 0 && !place_meeting(x + xSpd, y + 1, oWall) && place_meeting(x + xSpd, y + abs(xSpd) + 1, oWall)
+	{
+		while ! place_meeting(x + xSpd, y + _subPixel, oWall) { y += _subPixel };
+	}
 	// Move
 	x += xSpd;
 
