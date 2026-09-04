@@ -115,26 +115,61 @@ getControls();
 	// Cap falling spd
 	if ySpd > termVel { ySpd = termVel; }
 	
-	// Collision
-	if place_meeting(x, y + ySpd, oWall)
+	// Y Collision
+	// Upwards Y Collision (w. ceiling slopes)
+	if ySpd < 0 && place_meeting(x, y + ySpd, oWall)
 	{
+		// Jump into sloped ceilings
+		var _slopeSlide = false;
+		
+		// Slide up left
+		if moveDir == 0 && !place_meeting(x - abs(ySpd)-1, y + ySpd, oWall)
+		{
+			while place_meeting(x, y + ySpd, oWall) { x -= 1 };
+			_slopeSlide = true;
+		}
+		
+		// Slide up right
+		if moveDir == 0 && !place_meeting(x + abs(ySpd) + 1, y + ySpd, oWall)
+		{
+			while place_meeting(x, y + ySpd, oWall) { x += 1 };
+			_slopeSlide = true;
+		}
+		
+		// Normal Y Collision
+		if !_slopeSlide
+		{
+			// Scoot up to wall precisely
+			var _pixelCheck = _subPixel * sign(ySpd);
+			while !place_meeting(x, y + _pixelCheck, oWall){ y += _pixelCheck };
+		
+			// Bonk code (if player bonks head into ceiling, player moves downwards)
+			if ySpd < 0 { jumpHoldTimer = 0 };
+		
+			// xSpd set to zero to collide
+			ySpd = 0;
+		}
+	}
+	
+	// Downwards Y Collision
+	if ySpd >= 0
+	{
+		if place_meeting(x, y + ySpd, oWall)
+		{
 		// Scoot up to wall precisely
 		var _pixelCheck = _subPixel * sign(ySpd);
-		while !place_meeting(x, y + _pixelCheck, oWall){ y += _pixelCheck; }
-		
-		// Bonk code (if player bonks head into ceiling, player moves downwards)
-		//if ySpd < 0 { jumpHoldTimer = 0 };
+		while !place_meeting(x, y + _pixelCheck, oWall){ y += _pixelCheck };
 		
 		// xSpd set to zero to collide
 		ySpd = 0;
-	}
+		}
 	
-	// Set if player is on the ground
-	if ySpd >= 0 && place_meeting(x,y+1,oWall)
-	{
-		 setOnGround(true);
+		// Set if player is on the ground
+		if place_meeting(x,y+1,oWall)
+		{
+			 setOnGround(true);
+		}
 	}
-	
 	// Move
 	y += ySpd;
 	
