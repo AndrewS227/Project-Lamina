@@ -42,4 +42,5 @@ coyoteJumpTimer = 0;
 
 // Moving platforms
 myFloorPlat = noone; // for storing the floor platfrom that the player stands on
-movePlatXSpd = 0; // for tracking the moving platforms horizontal movement
+movePlatMaxXSpd = 0; // for tracking the moving platforms horizontal movement
+movePlatMaxYSpd = termVel; // how fast the player follows a downwards moving platform

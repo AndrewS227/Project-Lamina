@@ -9,6 +9,7 @@ function setOnGround(_val = true){
 	else
 	{
 		onGround = false;
+		myFloorPlat = noone;
 		coyoteHangTimer = 0;
 	}
 }
