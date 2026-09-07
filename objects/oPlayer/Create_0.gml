@@ -9,6 +9,8 @@ sprintSpr = sPlayerSprint;
 jumpSpr = sPlayerFirstJump;
 sJumpSpr = sPlayerSecondJump;
 
+depth = -30;
+
 // Moving
 face = 1; // player facing to the right or to the left (1 or -1)
 moveDir = 0; // direction (-1, 0, 1)
