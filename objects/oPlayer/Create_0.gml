@@ -39,3 +39,7 @@ coyoteHangTimer = 0;
 // Jump buffer time
 coyoteJumpFrames = 4; // how long 'til jump reset in air
 coyoteJumpTimer = 0;
+
+// Moving platforms
+myFloorPlat = noone; // for storing the floor platfrom that the player stands on
+movePlatXSpd = 0; // for tracking the moving platforms horizontal movement

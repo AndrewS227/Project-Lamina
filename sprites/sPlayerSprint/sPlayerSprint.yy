@@ -12,17 +12,17 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"c69d43f7-9183-4c20-92b9-83845ae3fca6","name":"c69d43f7-9183-4c20-92b9-83845ae3fca6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"d8b51ddc-5591-4b01-abf0-012564d24303","name":"d8b51ddc-5591-4b01-abf0-012564d24303","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"aff5c493-d696-403f-8809-915941dadde0","name":"aff5c493-d696-403f-8809-915941dadde0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"24e1ac24-4c4d-475b-a8dc-207d9b1fa131","name":"24e1ac24-4c4d-475b-a8dc-207d9b1fa131","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"52452ced-985f-45c9-98d0-07846e7479df","name":"52452ced-985f-45c9-98d0-07846e7479df","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4f557fbc-4300-433a-8e22-7cac6015a1d1","name":"4f557fbc-4300-433a-8e22-7cac6015a1d1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"0c05a350-24f3-486c-ae00-12475abe97a2","name":"0c05a350-24f3-486c-ae00-12475abe97a2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f30f25fe-5c5b-4696-bbe5-01a8da92d5ce","name":"f30f25fe-5c5b-4696-bbe5-01a8da92d5ce","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":16,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"91b4fca4-4dcc-4242-a44a-06858df95ed6","blendMode":0,"displayName":"default","isLocked":false,"name":"91b4fca4-4dcc-4242-a44a-06858df95ed6","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"cab07721-cd32-4876-97ef-90274232cffc","blendMode":0,"displayName":"default","isLocked":false,"name":"cab07721-cd32-4876-97ef-90274232cffc","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sPlayerSprint",
   "nineSlice":null,
@@ -72,17 +72,17 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c69d43f7-9183-4c20-92b9-83845ae3fca6","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"82174a84-b999-4f5b-8890-3a3c156a309b","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"52452ced-985f-45c9-98d0-07846e7479df","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"751933e8-709b-434e-9cae-4695e26509cb","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d8b51ddc-5591-4b01-abf0-012564d24303","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"4ee9c933-dae3-4250-831d-d3aac8b3744f","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4f557fbc-4300-433a-8e22-7cac6015a1d1","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"bfea1b9c-9202-48f5-9f68-a04acc3bea4f","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"aff5c493-d696-403f-8809-915941dadde0","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"b4734fa6-98da-4b99-9f76-05384fec7b1b","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0c05a350-24f3-486c-ae00-12475abe97a2","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"5997012c-90bc-4fb1-95c0-361c40c4bed9","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"24e1ac24-4c4d-475b-a8dc-207d9b1fa131","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"1102a788-74cc-4f48-8f22-93e284029efa","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f30f25fe-5c5b-4696-bbe5-01a8da92d5ce","path":"sprites/sPlayerSprint/sPlayerSprint.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"eb1bc1bf-57e9-41a4-9181-f4c6cff41f47","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
