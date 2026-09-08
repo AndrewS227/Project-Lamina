@@ -6,7 +6,7 @@ var _targetX = xstart + lengthdir_x(radius, dir);
 var _targetY = ystart + lengthdir_y(radius, dir);
 
 // Get xSpd and ySpd
-xSpd = _targetX - x;
+xSpd = 0;
 ySpd = _targetY - y;
 
 // Move

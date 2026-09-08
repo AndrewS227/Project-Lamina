@@ -235,6 +235,26 @@ getControls();
 		{
 			y = myFloorPlat.bbox_top;
 		}
+		
+		// Going up into a sloid wall while on a semisolid platf.
+		if myFloorPlat.ySpd < 0 && place_meeting(x, y + myFloorPlat.ySpd, oWall)
+		{
+			// Get pushed down through the semisolid floor platf.
+			if myFloorPlat.object_index == oSemiSolidWall
+			|| object_is_ancestor(myFloorPlat.object_index, oSemiSolidWall)
+			{
+				// Get pushed down through the semisolid
+				var _subPixel = .25;
+				while place_meeting(x, y + myFloorPlat.ySpd, oWall) { y += _subPixel };
+				
+				// If player gets pushed down into a solid wall, push them back out
+				while place_meeting(x, y, oWall) { y -= _subPixel };
+				y = round(y)
+			}
+			
+			// Cancel myFloorPlat var.
+			setOnGround(false);
+		}
 	}
 	
 // Sprite Control
