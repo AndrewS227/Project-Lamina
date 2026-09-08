@@ -25,6 +25,7 @@
   "name":"Project Lamina",
   "resources":[
     {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},},
+    {"id":{"name":"oMovePlat","path":"objects/oMovePlat/oMovePlat.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"oSemiSolidMovePlat","path":"objects/oSemiSolidMovePlat/oSemiSolidMovePlat.yy",},},
     {"id":{"name":"oSemiSolidWall","path":"objects/oSemiSolidWall/oSemiSolidWall.yy",},},
@@ -38,6 +39,7 @@
     {"id":{"name":"cam_functions","path":"scripts/cam_functions/cam_functions.yy",},},
     {"id":{"name":"general_functions","path":"scripts/general_functions/general_functions.yy",},},
     {"id":{"name":"player_functions","path":"scripts/player_functions/player_functions.yy",},},
+    {"id":{"name":"sMovePlat","path":"sprites/sMovePlat/sMovePlat.yy",},},
     {"id":{"name":"sPlayerFirstJump","path":"sprites/sPlayerFirstJump/sPlayerFirstJump.yy",},},
     {"id":{"name":"sPlayerIdle","path":"sprites/sPlayerIdle/sPlayerIdle.yy",},},
     {"id":{"name":"sPlayerMove","path":"sprites/sPlayerMove/sPlayerMove.yy",},},

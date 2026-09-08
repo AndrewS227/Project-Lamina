@@ -220,6 +220,23 @@ getControls();
 	// Move
 	y += ySpd;
 	
+// Final moving platform collisions and movement
+	// Y - Snap myself to myFloorPlat if it's moving vertically
+	if instance_exists(myFloorPlat) 
+	&& (myFloorPlat.ySpd != 0
+	|| myFloorPlat.object_index == oMovePlat
+	|| object_is_ancestor(myFloorPlat.object_index, oMovePlat)
+	|| myFloorPlat.object_index == oSemiSolidMovePlat
+	|| object_is_ancestor(myFloorPlat.object_index, oSemiSolidMovePlat))
+	{
+		// Snap to the top of the floor platform (un-flooring the y var. so it's no longer choppy)
+		if !place_meeting(x, myFloorPlat.bbox_top, oWall)
+		&& myFloorPlat.bbox_top >= bbox_bottom - movePlatMaxYSpd
+		{
+			y = myFloorPlat.bbox_top;
+		}
+	}
+	
 // Sprite Control
 	// Move, walking
 	if abs(xSpd) > 0 { sprite_index = moveSpr };
