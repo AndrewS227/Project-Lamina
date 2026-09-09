@@ -87,7 +87,13 @@ getControls();
 	}
 	
 	// Initiate the Jump
-	if jumpKeyBuffered && jumpCount < jumpMax
+	var _floorIsSolid = false;
+	if instance_exists(myFloorPlat)
+	&& (myFloorPlat.object_index == oWall || object_is_ancestor(myFloorPlat.object_index, oWall))
+	{
+		_floorIsSolid = true;
+	}
+	if  jumpKeyBuffered && jumpCount < jumpMax && (!downKey || _floorIsSolid)
 	{
 		// Reset buffer
 		jumpKeyBuffered = false;
@@ -182,8 +188,9 @@ getControls();
 		var _listInst = _list[| i];
 		
 		// Avoid magnetism
-		if(_listInst.ySpd <= ySpd || instance_exists(myFloorPlat))
-		&& (_listInst.ySpd > 0 || place_meeting(x, y + 1 + _clampYSpd, _listInst))
+		if (_listInst != forgetSemiSolid
+		&& (_listInst.ySpd <= ySpd || instance_exists(myFloorPlat))
+		&& (_listInst.ySpd > 0 || place_meeting(x, y + 1 + _clampYSpd, _listInst)))
 		|| _listInst == _semiSolid // HIGH SPEED FIX
 		{
 			// Return solid- or semisolid walls that are below the player
@@ -233,8 +240,41 @@ getControls();
 		setOnGround(true);
 	}
 	
+	// Manually fall through a semisolid platf.
+	if downKey && jumpKeyPressed
+	{
+		// making sure there's a semisolid platf.
+		if instance_exists(myFloorPlat)
+		&& (myFloorPlat.object_index == oSemiSolidWall 
+		|| object_is_ancestor(myFloorPlat.object_index, oSemiSolidWall))
+		{
+			// Check if player can go below semisolid
+			var _yCheck = max(1, myFloorPlat.ySpd + 1);
+			if !place_meeting(x, y + _yCheck, oWall)
+			{
+				// Move below the platf.
+				y += 1;
+				
+				// Inherit any downward spd from the platf. so it doesn't catch the player
+				ySpd = _yCheck - 1;
+				
+				// Forget this platf. briefly for not getting caught
+				forgetSemiSolid = myFloorPlat;
+				
+				// No more floor platf.
+				setOnGround(false);
+			}
+		}
+	}
+	
 	// Move
 	y += ySpd;
+	
+	// Reset forgetSemiSolid var.
+	if instance_exists(forgetSemiSolid) && !place_meeting(x, y, forgetSemiSolid)
+	{
+		forgetSemiSolid = noone;
+	}
 	
 // Final moving platform collisions and movement
 

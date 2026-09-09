@@ -17,7 +17,7 @@ function checkForSemiSolidPlatform(_x, _y)
 		for(var i = 0; i< _listSize; i++)
 		{
 			var _listInst = _list[| i];
-			if floor(bbox_bottom) <= ceil(_listInst.bbox_top - _listInst.ySpd)
+			if _listInst != forgetSemiSolid && floor(bbox_bottom) <= ceil(_listInst.bbox_top - _listInst.ySpd)
 			{
 				_rtrn = _listInst;
 				// Exit loop early
@@ -73,5 +73,6 @@ coyoteJumpTimer = 0;
 // Moving platforms
 myFloorPlat = noone; // for storing the floor platfrom that the player stands on
 downSlopeSemiSolid = noone; // returns a semosolid platf. while moving down a slope
+forgetSemiSolid = noone; // for storing a semisolid platf. the player ignores
 movePlatXSpd = 0; // for tracking the moving platforms horizontal movement
 movePlatMaxYSpd = termVel; // how fast the player follows a downwards moving platform

@@ -21,6 +21,9 @@ function getControls()
 	
 	leftKey =  keyboard_check(ord("A")) + gamepad_button_check(gamepad,gp_padl);
 		leftKey = clamp(leftKey, 0, 1);
+		
+	downKey =  keyboard_check(ord("S")) + gamepad_button_check(gamepad,gp_padd);
+		downKey = clamp(downKey, 0, 1);
 	
 	// Action Inputs
 	jumpKeyPressed = keyboard_check_pressed(vk_space) +  gamepad_button_check_pressed(gamepad,gp_face1);
