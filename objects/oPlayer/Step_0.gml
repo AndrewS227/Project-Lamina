@@ -221,6 +221,26 @@ getControls();
 	y += ySpd;
 	
 // Final moving platform collisions and movement
+
+	// X - movePlatXSpd and collision
+	// Get movePlatXSpd
+	movePlatXSpd = 0;
+	if instance_exists(myFloorPlat) { movePlatXSpd = myFloorPlat.xSpd };
+	
+	// Move w. movePlatXSpd
+	if place_meeting(x + movePlatXSpd, y, oWall)
+	{
+		// Scoot up to wall precisely
+		var _subPixel = .5;
+		var _pixelCheck = _subPixel * sign(movePlatXSpd);
+		while !place_meeting(x + _pixelCheck, y, oWall) { x += _pixelCheck };
+		
+		// Set movePlatXSpd to 0 to finish collision
+		movePlatXSpd = 0;
+	}
+	// Move
+	x += movePlatXSpd;
+	
 	// Y - Snap myself to myFloorPlat if it's moving vertically
 	if instance_exists(myFloorPlat) 
 	&& (myFloorPlat.ySpd != 0
