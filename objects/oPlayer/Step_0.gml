@@ -43,9 +43,16 @@ getControls();
 	}
 
 	// Go Down Slopes
+	downSlopeSemiSolid = noone;
 	if ySpd >= 0 && !place_meeting(x + xSpd, y + 1, oWall) && place_meeting(x + xSpd, y + abs(xSpd) + 1, oWall)
 	{
-		while ! place_meeting(x + xSpd, y + _subPixel, oWall) { y += _subPixel };
+		// Check for a semisolid in the way
+		downSlopeSemiSolid = checkForSemiSolidPlatform(x + xSpd, y + abs(xSpd) + 1);
+		// Precisely move down slope if there's no semisolid in the way
+		if !instance_exists(downSlopeSemiSolid)
+		{
+			while ! place_meeting(x + xSpd, y + _subPixel, oWall) { y += _subPixel };
+		}
 	}
 	// Move
 	x += xSpd;
@@ -162,6 +169,11 @@ getControls();
 	// Do the acttual check and add objects to list
 	var _listSize = instance_place_list(x, y + 1 + _clampYSpd + movePlatMaxYSpd, _array, _list, false);
 	
+	// FIX FOR HIGH RES./HIGH SPEED PROJECTS
+	var _yCheck = y + 1 + _clampYSpd;
+	if instance_exists(myFloorPlat) { _yCheck += max(0, myFloorPlat.ySpd) };
+	var _semiSolid = checkForSemiSolidPlatform(x, _yCheck);
+	
 	// Loop through colliding instances
 	// only returning one if it's top is below the player
 	for(var i = 0; i < _listSize; i++)
@@ -172,6 +184,7 @@ getControls();
 		// Avoid magnetism
 		if(_listInst.ySpd <= ySpd || instance_exists(myFloorPlat))
 		&& (_listInst.ySpd > 0 || place_meeting(x, y + 1 + _clampYSpd, _listInst))
+		|| _listInst == _semiSolid // HIGH SPEED FIX
 		{
 			// Return solid- or semisolid walls that are below the player
 			if _listInst.object_index == oWall
@@ -190,6 +203,9 @@ getControls();
 	}
 	// Destroy ds list to avoid a memory leak
 	ds_list_destroy(_list);
+	
+	// Downslope semisolid for making sure the player doesn't miss any while going down slopes
+	if instance_exists(downSlopeSemiSolid) { myFloorPlat = downSlopeSemiSolid };
 	
 	// One last check for the floor platform below the player
 	if instance_exists(myFloorPlat) && !place_meeting(x, y + movePlatMaxYSpd, myFloorPlat)

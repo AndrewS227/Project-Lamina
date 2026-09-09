@@ -1,6 +1,34 @@
 // Control Setup
 controlsSetup();
 
+function checkForSemiSolidPlatform(_x, _y)
+{
+	// Create a return var.
+	var _rtrn = noone;
+	
+	// Not moving upwards, then check for normal collision
+	if ySpd >= 0 && place_meeting(_x, _y, oSemiSolidWall)
+	{
+		// Create a ds list to store all colliding instances
+		var _list = ds_list_create();
+		var _listSize = instance_place_list(_x, _y, oSemiSolidWall, _list, false);
+		
+		// Loop through the coll. instances and only return one if it's top is below the player
+		for(var i = 0; i< _listSize; i++)
+		{
+			var _listInst = _list[| i];
+			if floor(bbox_bottom) <= ceil(_listInst.bbox_top - _listInst.ySpd)
+			{
+				_rtrn = _listInst;
+				// Exit loop early
+				i = _listSize;
+			}
+		}
+		ds_list_destroy(_list);
+	}
+	return _rtrn;
+}
+
 // Sprites
 maskSpr = sPlayerIdle;
 idleSpr = sPlayerIdle;
@@ -44,5 +72,6 @@ coyoteJumpTimer = 0;
 
 // Moving platforms
 myFloorPlat = noone; // for storing the floor platfrom that the player stands on
+downSlopeSemiSolid = noone; // returns a semosolid platf. while moving down a slope
 movePlatXSpd = 0; // for tracking the moving platforms horizontal movement
 movePlatMaxYSpd = termVel; // how fast the player follows a downwards moving platform
