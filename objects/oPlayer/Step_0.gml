@@ -1,6 +1,89 @@
 // Get Inputs
 getControls();
 
+// Get out of solid moveplats. that have positioned themselves into the player in the begin step
+	var _rightWall = noone;
+	var _leftWall = noone;
+	var _bottomWall = noone;
+	var _topWall = noone;
+	var _list = ds_list_create();
+	var _listSize = instance_place_list(x, y, oMovePlat, _list, false);
+	
+	// Loop through colliding moveplats.
+	for(var i = 0; i < _listSize; i++)
+	{
+		var _listInst = _list[| i];
+		
+		// Find closest wall in each dir.
+			// Right walls
+			if _listInst.bbox_left - _listInst.xSpd >= bbox_right - 1
+			{
+				if !instance_exists(_rightWall) || _listInst.bbox_left < _rightWall.bbox_left
+				{
+					_rightWall = _listInst;
+				}
+			}
+			// Left walls
+			if _listInst.bbox_right - _listInst.xSpd <= bbox_left + 1
+			{
+				if !instance_exists(_leftWall) || _listInst.bbox_right > _leftWall.bbox_right
+				{
+					_leftWall = _listInst
+				}
+			}
+			// Bottom walls
+			if _listInst.bbox_top - _listInst.ySpd >= bbox_bottom - 1
+			{
+				if !instance_exists(_bottomWall) || _listInst.bbox_top < _bottomWall.bbox_top
+				{
+					_bottomWall = _listInst;
+				}
+			}
+			// Top walls
+			if _listInst.bbox_bottom - _listInst.ySpd <= bbox_top + 1
+			{
+				if !instance_exists(_topWall) || _listInst.bbox_bottom > _topWall.bbox_bottom
+				{
+					_topWall = _listInst;
+				}
+			}
+	}
+	
+	// destroy ds list
+	ds_list_destroy(_list);
+	
+	// Get out of walls
+		// Right wall
+		if instance_exists(_rightWall)
+		{
+			var _rightDist = bbox_right - x;
+			x = _rightWall.bbox_left - _rightDist;
+		}
+		// Left wall
+		if instance_exists(_leftWall)
+		{
+			var _leftDist = x - bbox_left;
+			x = _leftWall.bbox_right + _leftDist;
+		}
+		// Bottom wall
+		if instance_exists(_bottomWall)
+		{
+			var _bottomDist = y - bbox_bottom;
+			y = _bottomWall.bbox_top - _bottomDist;
+		}
+		// Top wall (coll. for polish and crouching features)
+		if instance_exists(_topWall)
+		{
+			var _topDist = y - bbox_top;
+			var _targetY = _topWall.bbox_bottom + _topDist;
+			// Check for wall in the way
+			if !place_meeting(x, _targetY, oWall)
+			{
+				y = _targetY;
+			}
+		}
+
+
 // X Movement
 	moveDir = rightKey - leftKey; // determines player's move direction
 	
