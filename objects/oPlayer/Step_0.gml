@@ -2,6 +2,7 @@
 getControls();
 
 // Get out of solid moveplats. that have positioned themselves into the player in the begin step
+#region
 	var _rightWall = noone;
 	var _leftWall = noone;
 	var _bottomWall = noone;
@@ -82,7 +83,20 @@ getControls();
 				y = _targetY;
 			}
 		}
+#endregion
 
+// Don't get left behind by moveplat!
+earlyMovePlatXSpd = false;
+if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y + movePlatMaxYSpd + 1, myFloorPlat)
+{
+	var _xCheck = myFloorPlat.xSpd;
+	// If there's no wall in the way, move back ontu the platform
+	if !place_meeting(x + _xCheck, y, oWall)
+	{
+		x += _xCheck;
+		earlyMovePlatXSpd = true;
+	}
+}
 
 // X Movement
 	moveDir = rightKey - leftKey; // determines player's move direction
@@ -367,18 +381,21 @@ getControls();
 	if instance_exists(myFloorPlat) { movePlatXSpd = myFloorPlat.xSpd };
 	
 	// Move w. movePlatXSpd
-	if place_meeting(x + movePlatXSpd, y, oWall)
+	if !earlyMovePlatXSpd
 	{
-		// Scoot up to wall precisely
-		var _subPixel = .5;
-		var _pixelCheck = _subPixel * sign(movePlatXSpd);
-		while !place_meeting(x + _pixelCheck, y, oWall) { x += _pixelCheck };
+		if place_meeting(x + movePlatXSpd, y, oWall)
+		{
+			// Scoot up to wall precisely
+			var _subPixel = .5;
+			var _pixelCheck = _subPixel * sign(movePlatXSpd);
+			while !place_meeting(x + _pixelCheck, y, oWall) { x += _pixelCheck };
 		
-		// Set movePlatXSpd to 0 to finish collision
-		movePlatXSpd = 0;
+			// Set movePlatXSpd to 0 to finish collision
+			movePlatXSpd = 0;
+		}
+		// Move
+		x += movePlatXSpd;
 	}
-	// Move
-	x += movePlatXSpd;
 	
 	// Y - Snap myself to myFloorPlat if it's moving vertically
 	if instance_exists(myFloorPlat) 

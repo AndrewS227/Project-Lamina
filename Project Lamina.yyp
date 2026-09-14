@@ -29,6 +29,7 @@
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"oSemiSolidMovePlat","path":"objects/oSemiSolidMovePlat/oSemiSolidMovePlat.yy",},},
     {"id":{"name":"oSemiSolidWall","path":"objects/oSemiSolidWall/oSemiSolidWall.yy",},},
+    {"id":{"name":"oSimpleMovePlat","path":"objects/oSimpleMovePlat/oSimpleMovePlat.yy",},},
     {"id":{"name":"oSlope0","path":"objects/oSlope0/oSlope0.yy",},},
     {"id":{"name":"oSlope1","path":"objects/oSlope1/oSlope1.yy",},},
     {"id":{"name":"oSlope2","path":"objects/oSlope2/oSlope2.yy",},},
