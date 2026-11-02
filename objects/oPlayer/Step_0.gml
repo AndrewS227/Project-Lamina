@@ -365,7 +365,7 @@ if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y +
 	}
 	
 	// Move
-	y += ySpd;
+	if !place_meeting(x, y + ySpd, oWall) { y += ySpd; };
 	
 	// Reset forgetSemiSolid var.
 	if instance_exists(forgetSemiSolid) && !place_meeting(x, y, forgetSemiSolid)
@@ -412,25 +412,58 @@ if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y +
 			y = myFloorPlat.bbox_top;
 		}
 		
-		// Going up into a sloid wall while on a semisolid platf.
-		if myFloorPlat.ySpd < 0 && place_meeting(x, y + myFloorPlat.ySpd, oWall)
-		{
-			// Get pushed down through the semisolid floor platf.
-			if myFloorPlat.object_index == oSemiSolidWall
-			|| object_is_ancestor(myFloorPlat.object_index, oSemiSolidWall)
-			{
-				// Get pushed down through the semisolid
-				var _subPixel = .25;
-				while place_meeting(x, y + myFloorPlat.ySpd, oWall) { y += _subPixel };
+		// Codeblock made superflous by the one right under it
+							/*// Going up into a sloid wall while on a semisolid platf.
+							if myFloorPlat.ySpd < 0 && place_meeting(x, y + myFloorPlat.ySpd, oWall)
+							{
+								// Get pushed down through the semisolid floor platf.
+								if myFloorPlat.object_index == oSemiSolidWall
+								|| object_is_ancestor(myFloorPlat.object_index, oSemiSolidWall)
+								{
+									// Get pushed down through the semisolid
+									var _subPixel = .25;
+									while place_meeting(x, y + myFloorPlat.ySpd, oWall) { y += _subPixel };
 				
-				// If player gets pushed down into a solid wall, push them back out
-				while place_meeting(x, y, oWall) { y -= _subPixel };
-				y = round(y)
-			}
+									// If player gets pushed down into a solid wall, push them back out
+									while place_meeting(x, y, oWall) { y -= _subPixel };
+									y = round(y)
+								}
 			
-			// Cancel myFloorPlat var.
-			setOnGround(false);
+								// Cancel myFloorPlat var.
+								setOnGround(false);
+							}*/
+	}
+	
+	// Get pushed down through a semisolid by a moving solid platform
+	if instance_exists(myFloorPlat)
+	&& (myFloorPlat.object_index == oSemiSolidWall || object_is_ancestor(myFloorPlat.object_index, oSemiSolidWall))
+	&& place_meeting(x, y, oWall)
+	{
+		// If player is already stuck in a wall, try and move them down through a semisolid platf.
+		// If that's not possible, the player is "crushed"
+		
+		// Don't check too far! (to avoid warping below walls)
+		var _maxPushDist = 10; // the fastest a movePlat should be moving downwards
+		var _pushedDist = 0;
+		var _startY = y;
+		
+		while place_meeting(x, y, oWall) && _pushedDist <= _maxPushDist
+		{
+			y++;
+			_pushedDist++;
 		}
+		// Forget myFloorPlat
+		myFloorPlat = noone;
+		
+		// If player is still in a wall, they're "crushed" and taken back to the start y to avoid funk :3
+		if _pushedDist > _maxPushDist { y = _startY};
+	}
+	
+	// Check if player is crushed
+	image_blend = c_white;
+	if place_meeting(x, y, oWall)
+	{
+		image_blend = c_blue;
 	}
 	
 // Sprite Control
