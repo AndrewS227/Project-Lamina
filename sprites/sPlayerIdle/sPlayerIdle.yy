@@ -1,7 +1,7 @@
 {
   "$GMSprite":"v2",
   "%Name":"sPlayerIdle",
-  "bboxMode":0,
+  "bboxMode":2,
   "bbox_bottom":15,
   "bbox_left":0,
   "bbox_right":13,
@@ -43,7 +43,7 @@
     ],
     "top":0,
   },
-  "origin":9,
+  "origin":7,
   "parent":{
     "name":"Sprites",
     "path":"folders/Sprites.yy",
@@ -98,7 +98,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":8,
+    "xorigin":7,
     "yorigin":16,
   },
   "swatchColours":null,

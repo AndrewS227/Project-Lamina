@@ -36,8 +36,12 @@ moveSpr = sPlayerMove;
 sprintSpr = sPlayerSprint;
 jumpSpr = sPlayerFirstJump;
 sJumpSpr = sPlayerSecondJump;
+crouchSpr = sPlayerCrouch;
 
-depth = -30;
+depth = -30; // player appears in the foreground
+
+// State variables
+crouching = false;
 
 // Moving
 face = 1; // player facing to the right or to the left (1 or -1)
