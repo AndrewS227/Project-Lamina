@@ -133,6 +133,8 @@ if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y +
 	// what direction the player is facing
 	if moveDir != 0 { face = moveDir };
 	
+		if crouching { moveDir = 0 }; // to prevent player from moving while crouching
+	
 	runType = sprintKey; // movement type
 	
 	xSpd = moveDir * moveSpd[runType]; // determines player's x movement speed
