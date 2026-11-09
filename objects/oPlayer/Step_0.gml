@@ -100,8 +100,8 @@ if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y +
 
 // Crouching
 	// Transition to crouch
-	// Manual
-	if downKey && instance_exists(myFloorPlat)
+	// Manual = downKey | Automatic = coll. w. wall
+	if onGround && (downKey || place_meeting(x, y, oWall))
 	{
 		crouching = true;
 	}
@@ -110,8 +110,8 @@ if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y +
 	if crouching { mask_index = crouchSpr };
 	
 	// Transition out of crouching
-		// Manual
-		if crouching && !downKey
+		// Manual = !downKey | Automatic = !onGround
+		if crouching && (!downKey || !onGround)
 		{
 			// Check if player can crouch
 			mask_index = maskSpr;
@@ -126,7 +126,6 @@ if instance_exists(myFloorPlat) && myFloorPlat.xSpd != 0 && place_meeting(x, y +
 				mask_index = crouchSpr;
 			}
 		}
-
 
 // X Movement
 	moveDir = rightKey - leftKey; // determines player's move direction
